@@ -506,3 +506,122 @@ Processing by SessionsController#new as HTML
 Completed 200 OK in 423ms (Views: 376.2ms | ActiveRecord: 3.0ms | Allocations: 15305)
 
 
+Started GET "/" for 172.22.0.1 at 2022-12-03 03:41:55 +0000
+Cannot render console from 172.22.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (4.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EmployeesController#index as HTML
+  [1m[36mEmployee Load (3.8ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:7:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering employees/index.html.erb within layouts/application
+  [1m[36mEmployee Load (2.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."deleted_at" IS NULL ORDER BY number asc[0m
+  ↳ app/views/employees/index.html.erb:19
+  [1m[36mProfile Load (4.1ms)[0m  [1m[34mSELECT "profiles".* FROM "profiles" WHERE "profiles"."employee_id" = ? AND "profiles"."deleted_at" IS NULL[0m  [["employee_id", 1]]
+  ↳ app/views/employees/index.html.erb:21
+  [1m[36mDepartment Load (4.8ms)[0m  [1m[34mSELECT "departments".* FROM "departments" WHERE "departments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/employees/index.html.erb:31
+  Rendered employees/index.html.erb within layouts/application (Duration: 243.0ms | Allocations: 15260)
+[Webpacker] Everything's up-to-date. Nothing to do
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 46.1ms | Allocations: 1737)
+  Rendered layout layouts/application.html.erb (Duration: 575.4ms | Allocations: 23885)
+Completed 200 OK in 734ms (Views: 565.7ms | ActiveRecord: 42.4ms | Allocations: 38905)
+
+
+Started GET "/packs/js/application-15918248dc4618498f1e.js" for 172.22.0.1 at 2022-12-03 03:41:56 +0000
+Started GET "/packs/js/header-073977e8b96671837248.js" for 172.22.0.1 at 2022-12-03 03:41:56 +0000
+Cannot render console from 172.22.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Cannot render console from 172.22.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+ActionController::RoutingError (No route matches [GET] "/packs/js/application-15918248dc4618498f1e.js"):
+  
+  
+ActionController::RoutingError (No route matches [GET] "/packs/js/header-073977e8b96671837248.js"):
+  
+Started GET "/employees/new" for 172.22.0.1 at 2022-12-03 03:42:01 +0000
+Cannot render console from 172.22.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by EmployeesController#new as HTML
+  [1m[36mEmployee Load (5.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:7:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering employees/new.html.erb within layouts/application
+  [1m[36mDepartment Load (2.7ms)[0m  [1m[34mSELECT "departments".* FROM "departments"[0m
+  ↳ app/views/employees/_form.html.erb:47
+  [1m[36mOffice Load (3.7ms)[0m  [1m[34mSELECT "offices".* FROM "offices"[0m
+  ↳ app/views/employees/_form.html.erb:52
+  Rendered employees/_form.html.erb (Duration: 112.9ms | Allocations: 9653)
+  Rendered employees/new.html.erb within layouts/application (Duration: 118.7ms | Allocations: 10001)
+  Rendered layouts/_header.html.erb (Duration: 2.8ms | Allocations: 430)
+  Rendered layout layouts/application.html.erb (Duration: 153.4ms | Allocations: 12458)
+Completed 200 OK in 179ms (Views: 136.6ms | ActiveRecord: 24.5ms | Allocations: 14838)
+
+
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddNewsPostingAuthToEmployees (20221203034417)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (15.8ms)[0m  [1m[35mALTER TABLE "employees" ADD "news_posting_auth" boolean DEFAULT 0 NOT NULL[0m
+  [1m[36mActiveRecord::SchemaMigration Create (13.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221203034417"]]
+  [1m[36mTRANSACTION (10.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (7.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/employees/new" for 172.22.0.1 at 2022-12-03 03:47:01 +0000
+Cannot render console from 172.22.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by EmployeesController#new as HTML
+  [1m[36mEmployee Load (2.6ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:7:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering employees/new.html.erb within layouts/application
+  [1m[36mDepartment Load (2.0ms)[0m  [1m[34mSELECT "departments".* FROM "departments"[0m
+  ↳ app/views/employees/_form.html.erb:47
+  [1m[36mOffice Load (1.9ms)[0m  [1m[34mSELECT "offices".* FROM "offices"[0m
+  ↳ app/views/employees/_form.html.erb:52
+  Rendered employees/_form.html.erb (Duration: 45.3ms | Allocations: 9589)
+  Rendered employees/new.html.erb within layouts/application (Duration: 49.2ms | Allocations: 9930)
+  Rendered layouts/_header.html.erb (Duration: 6.7ms | Allocations: 629)
+  Rendered layout layouts/application.html.erb (Duration: 97.3ms | Allocations: 12984)
+Completed 200 OK in 154ms (Views: 80.6ms | ActiveRecord: 34.8ms | Allocations: 25902)
+
+
+Started GET "/employees/new" for 172.22.0.1 at 2022-12-03 03:49:34 +0000
+Cannot render console from 172.22.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by EmployeesController#new as HTML
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/helpers/sessions_helper.rb:7:in `current_user'
+  [1m[36mEmployee Load (2.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:7:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering employees/new.html.erb within layouts/application
+  [1m[36mDepartment Load (2.9ms)[0m  [1m[34mSELECT "departments".* FROM "departments"[0m
+  ↳ app/views/employees/_form.html.erb:47
+  [1m[36mOffice Load (1.4ms)[0m  [1m[34mSELECT "offices".* FROM "offices"[0m
+  ↳ app/views/employees/_form.html.erb:52
+  Rendered employees/_form.html.erb (Duration: 88.9ms | Allocations: 10306)
+  Rendered employees/new.html.erb within layouts/application (Duration: 89.9ms | Allocations: 10415)
+  Rendered layouts/_header.html.erb (Duration: 2.8ms | Allocations: 443)
+  Rendered layout layouts/application.html.erb (Duration: 124.1ms | Allocations: 12938)
+Completed 200 OK in 184ms (Views: 106.3ms | ActiveRecord: 37.7ms | Allocations: 25910)
+
+
+Started GET "/employees/new" for 172.22.0.1 at 2022-12-03 03:49:37 +0000
+Cannot render console from 172.22.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by EmployeesController#new as HTML
+  [1m[36mEmployee Load (2.9ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:7:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering employees/new.html.erb within layouts/application
+  [1m[36mDepartment Load (2.0ms)[0m  [1m[34mSELECT "departments".* FROM "departments"[0m
+  ↳ app/views/employees/_form.html.erb:47
+  [1m[36mOffice Load (2.2ms)[0m  [1m[34mSELECT "offices".* FROM "offices"[0m
+  ↳ app/views/employees/_form.html.erb:52
+  Rendered employees/_form.html.erb (Duration: 15.1ms | Allocations: 3850)
+  Rendered employees/new.html.erb within layouts/application (Duration: 16.2ms | Allocations: 3943)
+  Rendered layouts/_header.html.erb (Duration: 2.2ms | Allocations: 421)
+  Rendered layout layouts/application.html.erb (Duration: 48.5ms | Allocations: 6242)
+Completed 200 OK in 60ms (Views: 47.7ms | ActiveRecord: 7.1ms | Allocations: 7426)
+
+
