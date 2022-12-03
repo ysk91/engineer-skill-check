@@ -532,27 +532,17 @@ Completed 200 OK in 734ms (Views: 565.7ms | ActiveRecord: 42.4ms | Allocations: 
 Started GET "/packs/js/application-15918248dc4618498f1e.js" for 172.22.0.1 at 2022-12-03 03:41:56 +0000
 Started GET "/packs/js/header-073977e8b96671837248.js" for 172.22.0.1 at 2022-12-03 03:41:56 +0000
 Cannot render console from 172.22.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
-Cannot render console from 172.22.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
-  
-ActionController::RoutingError (No route matches [GET] "/packs/js/application-15918248dc4618498f1e.js"):
-  
-  
-ActionController::RoutingError (No route matches [GET] "/packs/js/header-073977e8b96671837248.js"):
-  
-Started GET "/employees/new" for 172.22.0.1 at 2022-12-03 03:42:01 +0000
-Cannot render console from 172.22.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
-Processing by EmployeesController#new as HTML
-  [1m[36mEmployee Load (5.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
-  ↳ app/helpers/sessions_helper.rb:7:in `current_user'
-  Rendering layout layouts/application.html.erb
-  Rendering employees/new.html.erb within layouts/application
-  [1m[36mDepartment Load (2.7ms)[0m  [1m[34mSELECT "departments".* FROM "departments"[0m
-  ↳ app/views/employees/_form.html.erb:47
-  [1m[36mOffice Load (3.7ms)[0m  [1m[34mSELECT "offices".* FROM "offices"[0m
-  ↳ app/views/employees/_form.html.erb:52
-  Rendered employees/_form.html.erb (Duration: 112.9ms | Allocations: 9653)
-  Rendered employees/new.html.erb within layouts/application (Duration: 118.7ms | Allocations: 10001)
-  Rendered layouts/_header.html.erb (Duration: 2.8ms | Allocations: 430)
+Cannot render console from 172.22.0.1!   [1m[35m (3.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateArticles (20221203052944)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (13.8ms)[0m  [1m[35mCREATE TABLE "articles" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar NOT NULL, "content" text NOT NULL, "auther" integer NOT NULL, "dalete_at" datetime DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (11.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20221203052944"]]
+  [1m[36mTRANSACTION (15.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (7.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Duration: 2.8ms | Allocations: 430)
   Rendered layout layouts/application.html.erb (Duration: 153.4ms | Allocations: 12458)
 Completed 200 OK in 179ms (Views: 136.6ms | ActiveRecord: 24.5ms | Allocations: 14838)
 
