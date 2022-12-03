@@ -1,4 +1,4 @@
-class ArticleController < ApplicationController
+class ArticlesController < ApplicationController
   def index
     @articles = Article.all
   end
@@ -9,7 +9,11 @@ class ArticleController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    @employee = @current_user
+    if @article.save
+      redirect_to article_path(@article)
+    else
+      render "new"
+    end
   end
 
   def edit
@@ -27,6 +31,7 @@ class ArticleController < ApplicationController
   private
 
     def article_params
-      params.require(:article).permit(:title, :content).merge(auther: @employee.id)
+      params.require(:article).permit(:title, :content).merge(auther: current_user.id)
     end
+  
 end
