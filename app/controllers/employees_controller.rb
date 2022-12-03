@@ -13,7 +13,7 @@ class EmployeesController < ApplicationController
   def create
     @employee = Employee.new(employee_params)
 
-    add_params
+    # add_params
 
     if @employee.save
       redirect_to employees_url, notice: "社員「#{@employee.last_name} #{@employee.first_name}」を登録しました。"
@@ -26,7 +26,7 @@ class EmployeesController < ApplicationController
   end
 
   def update
-    add_params
+    # add_params
 
     if @employee.update(employee_params)
       redirect_to employees_url, notice: "社員「#{@employee.last_name} #{@employee.first_name}」を更新しました。"
@@ -48,7 +48,9 @@ class EmployeesController < ApplicationController
   private
 
   def employee_params
-    params.require(:employee).permit(:number, :last_name, :first_name, :account, :password, :department_id, :office_id, :employee_info_manage_auth)
+    params.require(:employee).permit(:number, :last_name, :first_name, :account,
+      :email, :date_of_joining, :password, :department_id, :office_id,
+      :employee_info_manage_auth, :news_posting_auth)
   end
 
   def set_employee
