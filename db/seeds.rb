@@ -39,7 +39,8 @@ Employee.order(:id).take(5).each do |employee|
   sample_articles = 2.times.map {|i|{
     title: "sample article_#{employee.id}-#{i+1}",
     content: Faker::Lorem.sentence(word_count: 100),
-    employee_id: employee.id
+    employee_id: employee.id,
+    created_at: Time.zone.now - (i+1) * 365*rand(1..23)*24*60*60
   }}
   employee.articles.create!(sample_articles)
 end
