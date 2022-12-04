@@ -5,7 +5,6 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    @message = "test message"
   end
 
   def new
@@ -29,8 +28,13 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 
-  def delete
+  def destroy
     @article = Article.find(params[:id])
+    ActiveRecord::Base.transaction do
+      now = Time.now
+      @article.update_column(:deleted_at, now)
+    end
+    redirect_to articles_path
   end
 
   private
