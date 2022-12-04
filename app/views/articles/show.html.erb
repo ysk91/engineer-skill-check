@@ -1,0 +1,11 @@
+<p><%= link_to '一覧に戻る', articles_path, class: 'btn' %></p>
+
+<div class="container">
+  <div class="title">
+    タイトル <%= @article.title %>
+  </div>
+
+  <div class="content">
+    <%= simple_format @article.content %>
+  </div>
+</div>

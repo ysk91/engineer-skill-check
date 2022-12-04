@@ -3,6 +3,11 @@ class ArticlesController < ApplicationController
     @articles = Article.all
   end
 
+  def show
+    @article = Article.find(params[:id])
+    @message = "test message"
+  end
+
   def new
     @article = Article.new
   end
