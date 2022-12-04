@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   def index
-    @articles = Article.all
+    @articles = Article.all.order("#{sort_column} #{sort_direction}")
   end
 
   def show
@@ -41,6 +41,14 @@ class ArticlesController < ApplicationController
 
     def article_params
       params.require(:article).permit(:title, :content).merge(employee_id: current_user.id)
+    end
+
+    def sort_column
+      params[:sort] ? params[:sort] : 'created_at'
+    end
+  
+    def sort_direction
+      params[:direction] ? params[:direction] : 'desc'
     end
   
 end
