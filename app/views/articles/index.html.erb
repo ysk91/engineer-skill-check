@@ -21,15 +21,15 @@
         <% @articles.each do |article| %>
           <tr class="article">
             <% if article.deleted_at.nil?%>
-              <th><%= link_to article.title, article_path(article) %></th>
-              <th><%= article.created_at %></th>
+              <td><%= link_to article.title, article_path(article) %></td>
+              <td><%= l article.created_at %></td>
               <% if article.employee_id == current_user.id %>
-                <th class="btn_th"><%= link_to '編集', edit_article_path(article), class: 'btn btn-outline-secondary' %></th>
-                <th class="btn_th"><%= link_to '削除', article, method: :delete,
-                  data: { confirm: "記事「#{article.title}」を削除します。よろしいですか？" }, class: 'btn btn-outline-danger' %></th>
+                <td class="btn_th"><%= link_to '編集', edit_article_path(article), class: 'btn btn-outline-secondary' %></td>
+                <td class="btn_th"><%= link_to '削除', article, method: :delete,
+                  data: { confirm: "記事「#{article.title}」を削除します。よろしいですか？" }, class: 'btn btn-outline-danger' %></td>
               <% else %>
-                <th></th>
-                <th></th>
+                <td></td>
+                <td></td>
               <% end %>
             <% end %>
           </tr>

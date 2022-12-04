@@ -22,22 +22,22 @@
         <tr class="employee">
           <% if employee.profiles.active.present? %>
             <% if employee == current_user %>
-              <th><%= link_to employee.number, edit_employee_profile_path(employee, employee.profiles.active.first) %></th>
+              <td><%= link_to employee.number, edit_employee_profile_path(employee, employee.profiles.active.first) %></td>
             <% else %>
-              <th><%= link_to employee.number, employee_profile_path(employee, employee.profiles.active.first) %></th>
+              <td><%= link_to employee.number, employee_profile_path(employee, employee.profiles.active.first) %></td>
             <% end %>
           <% else %>
-            <th><%= link_to employee.number, employee_profiles_path(employee) %></th>
+            <td><%= link_to employee.number, employee_profiles_path(employee) %></td>
           <% end %>
-          <th class="name"><%= "#{employee.last_name} #{employee.first_name}" %></th>
-          <th><%= employee.department.name %></th>
+          <td class="name"><%= "#{employee.last_name} #{employee.first_name}" %></td>
+          <td><%= employee.department.name %></td>
           <% if current_user.employee_info_manage_auth %>
-            <th><%= link_to '編集', edit_employee_path(employee), class: 'btn btn-outline-secondary' %></th>
-            <th><%= link_to '削除', employee, method: :delete,
-              data: { confirm: "社員「#{employee.first_name} #{employee.last_name}」を削除します。よろしいですか？" }, class: 'btn btn-outline-danger' %></th>
+            <td><%= link_to '編集', edit_employee_path(employee), class: 'btn btn-outline-secondary' %></td>
+            <td><%= link_to '削除', employee, method: :delete,
+              data: { confirm: "社員「#{employee.first_name} #{employee.last_name}」を削除します。よろしいですか？" }, class: 'btn btn-outline-danger' %></td>
           <% else %>
-            <th></th>
-            <th></th>
+            <td></td>
+            <td></td>
           <% end %>
         </tr>
       <% end %>
