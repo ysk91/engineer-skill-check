@@ -8,11 +8,11 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = Article.new
+    @article = current_user.articles.build
   end
 
   def create
-    @article = Article.new(article_params)
+    @article = current_user.articles.build(article_params)
     if @article.save
       redirect_to article_path(@article)
     else
@@ -40,7 +40,7 @@ class ArticlesController < ApplicationController
   private
 
     def article_params
-      params.require(:article).permit(:title, :content).merge(auther: current_user.id)
+      params.require(:article).permit(:title, :content).merge(employee_id: current_user.id)
     end
   
 end
