@@ -22,6 +22,8 @@ gem 'jbuilder', '~> 2.7'
 
 # サンプル作成のためのFaker
 gem 'faker'
+# ページネーション
+gem 'kaminari'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
