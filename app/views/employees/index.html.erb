@@ -1,8 +1,4 @@
 <div class="employee_index">
-  <% if flash.notice.present? %>
-    <p><%= flash.notice %></p>
-  <% end %>
-
   <% if current_user.employee_info_manage_auth %>
     <p><%= link_to '新規追加', new_employee_path, class: 'btn btn-primary my-3' %></p>
   <% end %>
