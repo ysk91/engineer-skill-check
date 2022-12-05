@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
   def create
     @article = current_user.articles.build(article_params)
     if @article.save
-      redirect_to article_path(@article)
+      redirect_to article_path(@article), notice: "記事「#{@article.title}」を登録しました。"
     else
       render "new"
     end
@@ -26,6 +26,11 @@ class ArticlesController < ApplicationController
 
   def update
     @article = Article.find(params[:id])
+    if @article.update(article_params)
+      redirect_to article_path(@article), notice: "記事「#{@article.title}」を編集しました。"
+    else
+      render "edit"
+    end
   end
 
   def destroy

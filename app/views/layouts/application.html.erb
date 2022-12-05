@@ -15,6 +15,9 @@
       <%= render 'layouts/header' %>
     <% end %>
     <div class='container'>
+      <% if flash.notice.present? %>
+        <p><%= flash.notice %></p>
+      <% end %>
       <%= yield %>
     </div>
     <debug class="container">
