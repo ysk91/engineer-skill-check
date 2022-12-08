@@ -3,7 +3,7 @@ class EmployeesController < ApplicationController
   before_action :set_form_option, only: %i(new create edit update)
 
   def index
-    @employees = Employee.active.order("#{sort_column} #{sort_direction}")
+    @employees = Employee.active.order("#{sort_column} #{sort_direction}").page(params[:page]).per(20)
   end
 
   def new
@@ -12,9 +12,7 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.new(employee_params)
-
     # add_params
-
     if @employee.save
       redirect_to employees_url, notice: "社員「#{@employee.last_name} #{@employee.first_name}」を登録しました。"
     else
@@ -27,7 +25,6 @@ class EmployeesController < ApplicationController
 
   def update
     # add_params
-
     if @employee.update(employee_params)
       redirect_to employees_url, notice: "社員「#{@employee.last_name} #{@employee.first_name}」を更新しました。"
     else
@@ -41,7 +38,6 @@ class EmployeesController < ApplicationController
       @employee.update_column(:deleted_at, now)
       @employee.profiles.active.first.update_column(:deleted_at, now) if @employee.profiles.active.present?
     end
-
     redirect_to employees_url, notice: "社員「#{@employee.last_name} #{@employee.first_name}」を削除しました。"
   end
 

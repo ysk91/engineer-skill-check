@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   def index
-    @articles = Article.all.order("#{sort_column} #{sort_direction}")
+    @articles = Article.all.order("#{sort_column} #{sort_direction}").page(params[:page]).per(10)
   end
 
   def show
