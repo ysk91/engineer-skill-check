@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Articleモデルのテスト" do
+RSpec.describe Article, type: :model do
   describe "バリデーションのテスト" do
     let(:department) { FactoryBot.create(:department)}
     let(:office) { FactoryBot.create(:office)}

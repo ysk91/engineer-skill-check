@@ -18,12 +18,12 @@
         <tr class="employee">
           <% if employee.profiles.active.present? %>
             <% if employee == current_user %>
-              <td><%= link_to format("%06d", employee.number), edit_employee_profile_path(employee, employee.profiles.active.first) %></td>
+              <td><%= link_to format("%06d", employee.num), edit_employee_profile_path(employee, employee.profiles.active.first) %></td>
             <% else %>
-              <td><%= link_to format("%06d", employee.number), employee_profile_path(employee, employee.profiles.active.first) %></td>
+              <td><%= link_to format("%06d", employee.num), employee_profile_path(employee, employee.profiles.active.first) %></td>
             <% end %>
           <% else %>
-            <td><%= link_to format("%06d", employee.number), employee_profiles_path(employee) %></td>
+            <td><%= link_to format("%06d", employee.num), employee_profiles_path(employee) %></td>
           <% end %>
           <td class="name"><%= "#{employee.last_name} #{employee.first_name}" %></td>
           <td><%= employee.department.name %></td>

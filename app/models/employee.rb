@@ -13,4 +13,8 @@ class Employee < ApplicationRecord
   scope :active, -> {
     where(deleted_at: nil)
   }
+
+  def num
+    number.to_i
+  end
 end

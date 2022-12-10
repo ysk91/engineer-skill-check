@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Employeeモデルのテスト" do  
+RSpec.describe Employee, type: :model do  
   describe "バリデーションのテスト" do
     let(:department) { FactoryBot.create(:department)}
     let(:office) { FactoryBot.create(:office)}
@@ -45,7 +45,27 @@ RSpec.describe "Employeeモデルのテスト" do
         is_expected.to eq false;
       end
     end
+    context "emailカラム" do
+      it "空欄を防ぐこと" do
+        test_employee.email = " "
+        is_expected.to eq false;
+      end
+    end
+    context "date_of_joiningカラム" do
+      it "空欄を防ぐこと" do
+        test_employee.date_of_joining = " "
+        is_expected.to eq false;
+      end
+      # it "文字列を防ぐこと" do
+      #   test_employee.date_of_joining = "a" * 8
+      #   is_expected.to eq false;
+      # end
+    end
 
-
+    describe "numメソッドのテスト" do
+      it "numがIntegerであること" do
+        expect(employee.num.integer?).to eq true;
+      end
+    end
   end
 end
