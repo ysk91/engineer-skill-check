@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Employee, type: :model do  
-  let(:department) { FactoryBot.create(:department)}
-  let(:office) { FactoryBot.create(:office)}
-  let(:employee) { build(:employee, department_id: department.id, office_id: office.id)}
+  let(:employee) { build(:employee)}
 
   describe "バリデーションのテスト" do
     describe "正しい値" do
@@ -98,24 +96,18 @@ RSpec.describe Employee, type: :model do
   describe "スコープのテスト" do
     let!(:employee_1) { create(
       :employee,
-      department_id: department.id,
-      office_id: office.id,
       number: "A-001",
       account: "employee-1",
       deleted_at: nil # 明示的にnil
     ) }
     let!(:employee_2) { create(
       :employee,
-      department_id: department.id,
-      office_id: office.id,
       number: "A-002",
       account: "employee-2",
       deleted_at: nil # 明示的にnil
     ) }
     let!(:employee_3) { create(
       :employee,
-      department_id: department.id,
-      office_id: office.id,
       number: "DA-001",
       account: "employee-3",
       deleted_at: "2020/12/10" # 削除されたユーザー

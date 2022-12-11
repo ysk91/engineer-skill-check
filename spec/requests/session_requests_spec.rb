@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "sessionsコントローラのテスト" do
-  let(:department) { FactoryBot.create(:department)}
-  let(:office) { FactoryBot.create(:office)}
-  let(:employee) { create(:employee, department_id: department.id, office_id: office.id)}
+  let(:employee) { create(:employee)}
 
   describe "表示のテスト" do
     describe "ログイン前" do

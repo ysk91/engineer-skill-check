@@ -1,9 +1,11 @@
 FactoryBot.define do
   factory :employee do
-    number { "S-001" }
+    association :department
+    association :office
+    number { |n| n }
     last_name { "RSpec" }
     first_name { "factory_bot" }
-    account { "factory_bot" }
+    account { |n| "factory_bot-#{n}" }
     password { "hogehoge" }
     email { "factory_bot@example.co.jp" }
     date_of_joining { "2020/10/10" }
