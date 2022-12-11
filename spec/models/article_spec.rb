@@ -1,10 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Article, type: :model do
-  let(:department) { FactoryBot.create(:department)}
-  let(:office) { FactoryBot.create(:office)}
-  let!(:employee) { FactoryBot.create(:employee, department_id: department.id, office_id: office.id)}
-  let!(:article) { build(:article, employee_id: employee.id)}
+  let!(:article) { build(:article)}
   describe "バリデーションのテスト" do
     describe "正しい値" do
       it "articleが作成可能であること" do
@@ -36,15 +33,12 @@ RSpec.describe Article, type: :model do
 
   describe "スコープのテスト" do
     let!(:article_1) { create(:article,
-      employee_id: employee.id,
       deleted_at: nil # 明示的にnil
     )}
     let!(:article_2) { create(:article,
-      employee_id: employee.id,
       deleted_at: nil # 明示的にnil
     )}
     let!(:article_3) { create(:article,
-      employee_id: employee.id,
       deleted_at: "2020/12/10" # 削除された記事
     )}
 

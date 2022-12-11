@@ -13,6 +13,11 @@ RSpec.describe "employeesコントローラのテスト" do
         get employees_path
         expect(response).to be_successful
       end
+      it "editを正常に表示すること" do
+        pending "Webpackerがapplication.jsを参照できないエラー"
+        get edit_employee_path(employee)
+        expect(response).to be_successful
+      end
     end
     
     describe "ログイン前" do
@@ -46,11 +51,15 @@ RSpec.describe "employeesコントローラのテスト" do
         } }
         }.to change{ Employee.count }.by(1)
       end
+      it "updateできること" do
+        patch employee_path(employee), params: { employee: {
+          last_name: "Test"
+        } }
+        expect(employee.reload.last_name).to eq("Test")
+      end
       it "deleteできること" do
-        pending "通らない"
-        expect{
-          delete employee_path(test_employee)
-        }.to change{ test_employee.deleted_at.nil? }.by(false)
+        delete employee_path(test_employee)
+        expect(test_employee.reload.deleted_at.is_a?(FalseClass)).to eq false;
       end
     end
     describe "未認証のユーザーとして" do

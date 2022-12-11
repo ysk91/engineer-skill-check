@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :article do
+    association :employee
     title { "test" }
     content { "test" }
-    employee
   end
 end
