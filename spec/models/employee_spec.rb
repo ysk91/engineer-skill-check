@@ -102,7 +102,7 @@ RSpec.describe Employee, type: :model do
       office_id: office.id,
       number: "A-001",
       account: "employee-1",
-      deleted_at: nil # 明示的にnilにする
+      deleted_at: nil # 明示的にnil
     ) }
     let!(:employee_2) { create(
       :employee,
@@ -110,7 +110,7 @@ RSpec.describe Employee, type: :model do
       office_id: office.id,
       number: "A-002",
       account: "employee-2",
-      deleted_at: nil # 明示的にnilにする
+      deleted_at: nil # 明示的にnil
     ) }
     let!(:employee_3) { create(
       :employee,
@@ -120,9 +120,6 @@ RSpec.describe Employee, type: :model do
       account: "employee-3",
       deleted_at: "2020/12/10" # 削除されたユーザー
     ) }
-    it "employee_1~3がvalidであること" do
-      expect(employee_1.valid? && employee_2.valid? && employee_3.valid?).to eq true;
-    end
     describe "activeスコープ" do
       it "activeを呼び出すこと" do
         expect(Employee.active).to include(employee_1, employee_2)

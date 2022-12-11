@@ -1,12 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Article, type: :model do
+  let(:department) { FactoryBot.create(:department)}
+  let(:office) { FactoryBot.create(:office)}
+  let!(:employee) { FactoryBot.create(:employee, department_id: department.id, office_id: office.id)}
+  let!(:article) { build(:article, employee_id: employee.id)}
   describe "バリデーションのテスト" do
-    let(:department) { FactoryBot.create(:department)}
-    let(:office) { FactoryBot.create(:office)}
-    let!(:employee) { FactoryBot.create(:employee, department_id: department.id, office_id: office.id)}
-    let!(:article) { build(:article, employee_id: employee.id)}
-
     describe "正しい値" do
       it "articleが作成可能であること" do
         expect(article.valid?).to eq true;
@@ -16,21 +15,45 @@ RSpec.describe Article, type: :model do
     subject { test_article.valid? }
     let!(:test_article) { article }
 
-    context "titleカラム" do
-      it "空欄を防ぐこと" do
+    context "空欄を防ぐこと" do
+      it "titleカラム" do
         test_article.title = " "
         is_expected.to eq false;
       end
-      it "50文字以内であること" do
-        test_article.title = "a" * 51
+      it "contentカラム" do
+        test_article.content = " "
         is_expected.to eq false;
       end
     end
 
-    context "contentカラム" do
-      it "空欄を防ぐこと" do
-        test_article.content = " "
+    context "文字数制限" do
+      it "titleカラムが51文字以上を防ぐこと" do
+        test_article.title = "a" * 51
         is_expected.to eq false;
+      end
+    end
+  end
+
+  describe "スコープのテスト" do
+    let!(:article_1) { create(:article,
+      employee_id: employee.id,
+      deleted_at: nil # 明示的にnil
+    )}
+    let!(:article_2) { create(:article,
+      employee_id: employee.id,
+      deleted_at: nil # 明示的にnil
+    )}
+    let!(:article_3) { create(:article,
+      employee_id: employee.id,
+      deleted_at: "2020/12/10" # 削除された記事
+    )}
+
+    describe "activeスコープ" do
+      it "activeで呼び出せること" do
+          expect(Article.active).to include(article_1, article_2)
+      end
+      it "activeで呼び出さないこと" do
+        expect(Article.active).to_not include(article_3)
       end
     end
   end
